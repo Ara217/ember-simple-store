@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-offset-2 col-md-8">
+        <h2>Stores</h2>
+        <div class="shops">
+          {{#if model}}
+            {{#each model as |store|}}
+              <div class="shop-item">
+                <div class="col-md-8">
+                  {{#link-to 'store.show' store}}
+                    <span class="shop-name">{{store.name}}</span>
+                  {{/link-to}}
+                </div>
+                <div class="col-md-4 text-right">
+                  <div class="col-md-6">
+                    {{#link-to 'store.edit' store class="btn btn-success btn-md"}}
+                      Edit
+                    {{/link-to}}
+                  </div>
+                  <div class="col-md-6">
+                    {{remove-store-modal removeStore=(action 'removeStore' store.id)}}
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="text-center"><h4>Empty data</h4></div>
+          {{/if}}
+        </div>
+        <div class="clear"></div>
+        {{#link-to 'store.create' class="btn btn-primary btn-md"}}
+          Add stores
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+</div>
+{{outlet}}
