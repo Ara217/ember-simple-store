@@ -1,0 +1,19 @@
+{{#if model}}
+    <h2>Edit store</h2>
+    {{#bs-form onSubmit=(action "updateStore" model.name model.id)}}
+        {{input type="text" value=model.name class="form-control" placeholder="Store name"}}
+        {{#if isError}}
+            <span class='help-block text-danger'>Name is required</span>
+        {{/if}}
+        {{#bs-button buttonType=submit type="success"}}Save{{/bs-button}}
+    {{/bs-form}}
+{{else}}
+    <h2>Add new store</h2>
+    {{#bs-form onSubmit=(action "createStore" name)}}
+        {{input type="text" value=name class="form-control" placeholder="Store name"}}
+        {{#if isError}}
+            <span class='help-block text-danger'>Name is required</span>
+        {{/if}}
+        {{#bs-button buttonType=submit type="success"}}Save{{/bs-button}}
+    {{/bs-form}}
+{{/if}}

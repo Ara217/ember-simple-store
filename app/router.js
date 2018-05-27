@@ -9,8 +9,10 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('store', function() {
     this.route('create');
-    this.route('show');
-    this.route('edit');
+    this.route('edit', {path:'/edit/:id'});
+    this.route('show', {path:'/:id'});
+    this.route('product-edit', {path : '/product/edit/:id'});
+    this.route('product-create', {path : '/:id/product-create'});
   });
 });
 

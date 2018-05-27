@@ -1,0 +1,46 @@
+{{#if create}}
+    <h2>Add product</h2>
+    <ul class="errors">
+    </ul>
+    {{#bs-form onSubmit=(action "createProduct" name count price model.id)}}
+        <div class="form-group">
+            {{input type="text" name="name"value=name class="form-control" placeholder="Product name"}}
+            <span class="text-danger">{{errors.name.message}}</span>
+        </div>
+        <div class="form-group">
+            {{input type="text" name="count" value=count class="form-control" placeholder="Product count"}}
+            <span class="text-danger">{{errors.count.message}}</span>
+            <span class="text-danger">{{errors.countNaN.message}}</span>
+        </div>
+        <div class="form-group">
+            {{input type="text" name="price" value=price class="form-control" placeholder="Product price"}}
+            <span class="text-danger">{{errors.price.message}}</span>
+            <span class="text-danger">{{errors.priceNaN.message}}</span>
+        </div>
+        {{#bs-button buttonType=submit type="success"}}Save{{/bs-button}}
+    {{/bs-form}}
+{{else}}
+    <h2>Edit product</h2>
+    <ul class="errors">
+        {{#each errors as |error|}}
+            <li class="text-danger">{{error.message}}</li>
+        {{/each}}
+    </ul>
+    {{#bs-form onSubmit=(action "updateProduct" model.name model.count model.price model.id model.shop.id)}}
+        <div class="form-group">
+            {{input type="text" value=model.name class="form-control" placeholder="Product name"}}
+            <span class="text-danger">{{errors.name.message}}</span>
+        </div>
+        <div class="form-group">
+            {{input type="text" value=model.count class="form-control" placeholder="Product count"}}
+            <span class="text-danger">{{errors.count.message}}</span>
+            <span class="text-danger">{{errors.countNaN.message}}</span>
+        </div>
+        <div class="form-group">
+            {{input type="text" value=model.price class="form-control" placeholder="Product price"}}
+            <span class="text-danger">{{errors.price.message}}</span>
+            <span class="text-danger">{{errors.priceNaN.message}}</span>
+        </div>
+        {{#bs-button buttonType=submit type="success"}}Save{{/bs-button}}
+    {{/bs-form}}
+{{/if}}

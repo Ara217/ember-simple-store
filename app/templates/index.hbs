@@ -3,27 +3,34 @@
     <div class="col-md-12">
       <div class="col-md-offset-2 col-md-8">
         <h2>Stores</h2>
-        <div class="shops">
+        <div>
           {{#if model}}
-            {{#each model as |store|}}
-              <div class="shop-item">
-                <div class="col-md-8">
-                  {{#link-to 'store.show' store}}
-                    <span class="shop-name">{{store.name}}</span>
-                  {{/link-to}}
-                </div>
-                <div class="col-md-4 text-right">
-                  <div class="col-md-6">
-                    {{#link-to 'store.edit' store class="btn btn-success btn-md"}}
-                      Edit
-                    {{/link-to}}
-                  </div>
-                  <div class="col-md-6">
-                    {{remove-store-modal removeStore=(action 'removeStore' store.id)}}
-                  </div>
-                </div>
-              </div>
-            {{/each}}
+              <table class="table">
+                  <thead>
+                  <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Edit</th>
+                      <th scope="col">Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      {{#each model as |store|}}
+                          {{#link-to 'store.show' store tagName="tr" }}
+                              <td>
+                                  <span>{{store.name}}</span>
+                              </td>
+                              <td>
+                                  {{#link-to 'store.edit' store class="btn btn-success btn-md"}}
+                                      Edit
+                                  {{/link-to}}
+                              </td>
+                              <td>
+                                  {{#bs-button type="danger" onClick=(action "removeStore" store.id)}}Delete{{/bs-button}}
+                              </td>
+                          {{/link-to}}
+                      {{/each}}
+                </tbody>
+              </table>
           {{else}}
             <div class="text-center"><h4>Empty data</h4></div>
           {{/if}}

@@ -1,1 +1,9 @@
-{{outlet}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-offset-2 col-md-8">
+                {{products-list model=model  onRemove=(action 'removeProduct')}}
+            </div>
+        </div>
+    </div>
+</div>

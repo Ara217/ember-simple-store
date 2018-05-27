@@ -1,0 +1,39 @@
+<h2>Products of {{model.name}}</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th class="text-center">Name</th>
+        <th class="text-center">Count</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">Edit</th>
+        <th class="text-center">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each model.products as |product|}}
+        <tr>
+            <td class="text-center">{{product.name}}</td>
+            <td class="text-center">{{product.count}}</td>
+            <td class="text-center">{{product.price}}$</td>
+            <td class="text-center">
+                {{#link-to 'store.product-edit' product class="btn btn-success btn-xs"}}
+                    Edit
+                {{/link-to}}
+            </td>
+            <td class="text-center">
+                {{#bs-button type="danger" onClick=(action "removeProduct" product.id)}}Delete{{/bs-button}}
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<div class="col-md-12 row">
+    <div class="col-md-6">
+        {{#link-to 'store.product-create' model.id class="btn btn-secondary btn-md"}}
+            Add product
+        {{/link-to}}
+    </div>
+    <div class="col-md-6 text-right">
+        Total price: {{totalPrice}}$
+    </div>
+</div>

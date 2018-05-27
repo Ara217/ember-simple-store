@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-offset-2 col-md-8">
-                {{store-form editStore=(action 'updateStore' model.name  model.id) model=model}}
+                {{product-form onUpdate=(action 'updateProduct') create=false model=model}}
             </div>
         </div>
     </div>
